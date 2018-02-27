@@ -14,12 +14,25 @@ class App extends Component {
     };
   }
 
+  componentWillMount() {
+    if (localStorage.getItem('loggedIn') === null || localStorage.getItem('loggedIn') === false) {
+      this.setState({
+        isLoggedIn: false
+      });
+    } else {
+      this.setState({
+        isLoggedIn: true
+      });
+    }
+  }
+
   handleLogin = ev => {
     ev.preventDefault();
     if(this.state.typedUsername === this.state.username && this.state.typedPassword === this.state.password){
       this.setState({
         isLoggedIn: true
-      })
+      });
+      localStorage.setItem("loggedIn", true);
     }else {
       console.log("bad");
     }
