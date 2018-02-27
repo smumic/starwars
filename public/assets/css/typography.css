@@ -35,3 +35,6 @@ body {
 .icon-key:before {
   content: "\e98d";
 }
+.icon-search:before {
+  content: "\e986";
+}
