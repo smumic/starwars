@@ -6,12 +6,31 @@
   height: 100px;
   padding: 0 50px;
   background-color: #13232f;
-  box-shadow:0 4px 10px 4px rgba(#13232f,.3);
 
   &__container--child {
+    display: inline-block;
+    float: left;
     position: relative;
     width: 50%;
     height: 100px;
+  }
+
+  &__input {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 350px;
+    height: 45px;
+    outline-width: 0;
+    padding-left: 10px;
+    padding-right: 50px;
+    font-size: 15px;
+    border: 3px solid white;
+    transition: all 0.2s ease;
+    &:hover, &:focus {
+      border-color: #1ab188;
+    }
   }
 
   &__title {
@@ -21,5 +40,14 @@
     font-size: 35px;
     font-weight: bold;
     color: white;
+  }
+
+  &__icon{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #13232f;
   }
 }

@@ -17,7 +17,8 @@ class Search extends Component {
             <h1 className="m-search__title">Starwars API</h1>
           </div>
           <div className="m-search__container--child">
-            <input className="m-login__input" />
+            <input className="m-search__input" placeholder="Search" />
+            <span className="m-search__icon icon-search"></span>
           </div>
       </div>
     )
