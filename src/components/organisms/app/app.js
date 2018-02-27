@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Login from 'components/molecules/login';
+import Search from 'components/molecules/search';
 import './css/app.css';
 
 class App extends Component {
@@ -55,7 +56,7 @@ class App extends Component {
 
     if(this.state.isLoggedIn){
       html = (
-        <div>Logged In</div>
+        <Search />
       );
     }else {
       html = (
