@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Login from 'components/molecules/login';
 import Search from 'components/molecules/search';
+import { fetchApiData } from 'api/starwars';
 import './css/app.css';
 
 class App extends Component {
@@ -11,11 +12,14 @@ class App extends Component {
       password: "root",
       typedUsername: "",
       typedPassword: "",
-      isLoggedIn: false
+      isLoggedIn: false,
+      filteredData: null,
+      isLoading: true
     };
   }
 
   componentWillMount() {
+
     if (localStorage.getItem('loggedIn') === null || localStorage.getItem('loggedIn') === false) {
       this.setState({
         isLoggedIn: false
@@ -25,6 +29,16 @@ class App extends Component {
         isLoggedIn: true
       });
     }
+  }
+
+  componentDidMount() {
+    fetchApiData()
+      .then(data => {
+        console.log(data);
+      })
+      .catch(err => {
+        console.log(err)
+      });
   }
 
   handleLogin = ev => {
