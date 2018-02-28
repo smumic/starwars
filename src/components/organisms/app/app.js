@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Login from 'components/molecules/login';
 import Search from 'components/molecules/search';
 import List from 'components/molecules/list';
+import Loading from 'components/molecules/loading';
 import { fetchFilms } from 'api/starwars';
 import { fetchPeople } from 'api/starwars';
 import { fetchPlanets } from 'api/starwars';
@@ -106,7 +107,7 @@ class App extends Component {
         html = (
           <div className="o-app__container--child o-app__loading-container">
             <Search />
-            <div>LOADING</div>
+            <Loading />
           </div>
         );
       }else {
