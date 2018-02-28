@@ -35,6 +35,7 @@ class App extends Component {
   componentWillMount() {
 
     if (localStorage.getItem('loggedIn') === null || localStorage.getItem('loggedIn') === false) {
+      console.log(localStorage.getItem('loggedIn'))
       this.setState({
         isLoggedIn: false
       });
@@ -168,7 +169,10 @@ class App extends Component {
   };
 
   handleLogout = ev => {
-    console.log('logout');
+    localStorage.removeItem('loggedIn');
+    this.setState({
+      isLoggedIn: false
+    });
   };
 
   handleTypedUsername = username => {
