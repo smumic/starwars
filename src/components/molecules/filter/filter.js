@@ -22,7 +22,7 @@ class Filter extends Component {
             <label htmlFor="people">People</label>
           </li>
           <li className="m-filter__listItem">
-            <Checkbox value="planets" value="planets" onChange={this.props.onFilterSwitched} />
+            <Checkbox value="planets" onChange={this.props.onFilterSwitched} />
             <label htmlFor="planets">Planets</label>
           </li>
           <li className="m-filter__listItem">

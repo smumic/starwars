@@ -11,32 +11,16 @@ class List extends Component {
     };
   }
 
-  componentWillMount(){
-    let listItems = [];
-
-    for(let i = 0; i < this.props.renderItems.length; i++){
-      for(let y = 0; y < this.props.renderItems[i].length; y++){
-        let data = this.props.renderItems[i][y];
-        let values = Object.values(data);
-        listItems.push(values);
-      }
-    }
-
-    this.setState({
-      listItems: listItems
-    });
-  }
-
   render(){
-
-
     return (
       <ul className="m-list">
-      {this.state.listItems.length !== 0
-        ? this.state.listItems.map(item => (
-            <ListItem values={item} />
-          ))
-        : <li className="a-listItem">Keine Items gefunden</li>}
+        {
+          this.props.renderItems.map(function(item, i){
+            return item[1].map(function(dataReturn, i){
+              return (<ListItem values={dataReturn} />);
+            });
+          })
+        }
       </ul>
     )
   }

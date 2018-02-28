@@ -10,7 +10,6 @@ import { fetchPlanets } from 'api/starwars';
 import { fetchSpecies } from 'api/starwars';
 import { fetchVehicles } from 'api/starwars';
 import { fetchStarships } from 'api/starwars';
-import filter from 'helper/filter';
 import './css/app.css';
 
 class App extends Component {
@@ -69,7 +68,7 @@ class App extends Component {
       fetchStarships()
     ]).then(responses => {
       return responses.map(response => {
-        return renderData.push(response.results);
+        return renderData.push(response);
       })
     }).then(() => {
         return this.setState({
@@ -88,13 +87,36 @@ class App extends Component {
       });
       localStorage.setItem("loggedIn", true);
     } else {
-      console.log("bad");
     }
   };
 
   handleFilterSwitched = ev => {
     let options = this.state.filterOptions;
-    console.log('changed');
+    let val = ev.target.value;
+    let dataSeq = Object.keys(this.state.dataSequence);
+    let renderItems = this.state.renderItems;
+    let filteredItems = this.state.filteredItems;
+
+
+    if(options.includes(val)){
+      let index = options.indexOf(val);
+      if (index > -1) {
+        options.splice(index, 1);
+      }
+    }else {
+      options.push(val);
+    }
+
+    if(options.length === 0){
+      this.setState({
+        filteredItems: renderItems
+      });
+    }else {
+      for(let i = 0; i < filteredItems.length; i++){
+        console.log(filteredItems[i]);
+      }
+    }
+
   };
 
   handleTypedUsername = username => {
