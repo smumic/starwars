@@ -24,7 +24,10 @@ class App extends Component {
       isLoading: true,
       renderItems: null,
       filteredItems: null,
-      filterOptions:[]
+      filterOptions:{
+        filter: [],
+        text: ''
+      }
     };
   }
 
@@ -82,34 +85,90 @@ class App extends Component {
     let newItems = [];
 
 
-    if(options.includes(val)){
-      let index = options.indexOf(val);
+    if(options.filter.includes(val)){
+      let index = options.filter.indexOf(val);
       if (index > -1) {
-        options.splice(index, 1);
+        options.filter.splice(index, 1);
       }
     }else {
-      options.push(val);
+      options.filter.push(val);
     }
 
-    if(options.length === 0){
+    if(options.filter.length === 0){
       this.setState({
         filteredItems: renderItems
       });
     }else {
       for(let i = 0; i < renderItems.length; i++){
-        for(let x = 0; x < options.length; x++){
-          if(renderItems[i][0] === options[x]){
-            newItems.push(renderItems[i]);
+        for(let x = 0; x < options.filter.length; x++){
+          if(renderItems[i][0] === options.filter[x]){
+            if(options.text != ''){
+              for(let y = 0; y < renderItems[i][1].length; y++){
+                if(Object.values(renderItems[i][1][y]).toString().includes(options.text)){
+                  newItems.push(renderItems[i]);
+                }
+              }
+            } else {
+              newItems.push(renderItems[i]);
+            }
           }
         }
       }
-      console.log(newItems);
+      this.setState({
+        filteredItems: newItems
+      })
+    }
+  };
+
+  handleSearch = ev => {
+    let renderItems = this.state.renderItems;
+    let filteredItems = this.state.filteredItems;
+    let options = this.state.filterOptions;
+    let newItems = [];
+
+    this.setState({
+      filterOptions: {
+        filter: options.filter,
+        text: ev.target.value
+      }
+    });
+
+    if(options.filter.length === 0 && options.text === ''){
+      this.setState({
+        filteredItems: renderItems
+      });
+    } else {
+      for(let i = 0; i < renderItems.length; i++){
+        if(options.filter.length != 0){
+          for(let x = 0; x < options.filter.length; x++){
+            if(renderItems[i][0] === options.filter[x]){
+              if(options.text != ''){
+                for(let y = 0; y < renderItems[i][1].length; y++){
+                  if(Object.values(renderItems[i][1][y]).toString().includes(options.text)){
+                    newItems.push(renderItems[i]);
+                  }
+                }
+              } else {
+                newItems.push(renderItems[i]);
+              }
+            }
+          }
+        } else {
+          for(let y = 0; y < renderItems[i][1].length; y++){
+            if(Object.values(renderItems[i][1][y]).toString().includes(options.text)){
+              newItems.push(renderItems[i]);
+            }
+          }
+        }
+      }
       this.setState({
         filteredItems: newItems
       })
     }
 
   };
+
+
 
   handleTypedUsername = username => {
     this.setState({
@@ -137,7 +196,7 @@ class App extends Component {
       }else {
         html = (
           <div className="o-app__container--child">
-            <Search />
+            <Search onHandleSearch={this.handleSearch} />
             <Filter onFilterSwitched={this.handleFilterSwitched}/>
             <List renderItems={this.state.filteredItems} dataComponents={this.state.dataComponents} dataSequence={this.dataSequence}/>
           </div>
