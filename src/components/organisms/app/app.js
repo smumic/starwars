@@ -24,23 +24,7 @@ class App extends Component {
       isLoading: true,
       renderItems: null,
       filteredItems: null,
-      filterOptions:[],
-      dataSequence: {
-        films: 0,
-        people: 1,
-        planets: 2,
-        species: 3,
-        vehicles: 4,
-        starships: 5
-      },
-      dataComponents: [
-        ['director', 'title', 'producer', 'release_date', 'title', 'opening_crawl'],
-        ['birth_year', 'eye_color', 'gender', 'name', 'skin_color', 'mass', 'height'],
-        ['climate', 'name', 'population', 'terrain'],
-        ['name', 'language', 'average_height', 'average_lifespan'],
-        ['model', 'crew', 'max_atmosphering_speed', 'vehicle_class'],
-        ['crew', 'model', 'name', 'length', 'starship_class']
-     ]
+      filterOptions:[]
     };
   }
 
@@ -93,9 +77,9 @@ class App extends Component {
   handleFilterSwitched = ev => {
     let options = this.state.filterOptions;
     let val = ev.target.value;
-    let dataSeq = Object.keys(this.state.dataSequence);
     let renderItems = this.state.renderItems;
     let filteredItems = this.state.filteredItems;
+    let newItems = [];
 
 
     if(options.includes(val)){
@@ -112,9 +96,17 @@ class App extends Component {
         filteredItems: renderItems
       });
     }else {
-      for(let i = 0; i < filteredItems.length; i++){
-        console.log(filteredItems[i]);
+      for(let i = 0; i < renderItems.length; i++){
+        for(let x = 0; x < options.length; x++){
+          if(renderItems[i][0] === options[x]){
+            newItems.push(renderItems[i]);
+          }
+        }
       }
+      console.log(newItems);
+      this.setState({
+        filteredItems: newItems
+      })
     }
 
   };
