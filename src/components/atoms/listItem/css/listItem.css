@@ -1,0 +1,6 @@
+.a-listItem__item {
+  display: inline-block;
+  max-width: 200px;
+  max-height: 200px;
+  overflow: hidden;
+  padding: 20px; }
