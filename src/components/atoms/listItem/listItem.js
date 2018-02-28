@@ -13,7 +13,7 @@ class ListItem extends Component {
       <li className="a-listItem a-listItem__item" onClick={this.onClick}>
         {
           Object.values(this.props.values).map(function(item, i){
-            return (<p className="a-listItem__data-item">{item}</p>);
+            return (<p className="a-listItem__data-item" key={Math.random()}>{item}</p>);
           })
         }
       </li>

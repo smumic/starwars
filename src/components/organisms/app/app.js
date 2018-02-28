@@ -81,7 +81,6 @@ class App extends Component {
     let options = this.state.filterOptions;
     let val = ev.target.value;
     let renderItems = this.state.renderItems;
-    let filteredItems = this.state.filteredItems;
     let newItems = [];
 
 
@@ -102,7 +101,7 @@ class App extends Component {
       for(let i = 0; i < renderItems.length; i++){
         for(let x = 0; x < options.filter.length; x++){
           if(renderItems[i][0] === options.filter[x]){
-            if(options.text != ''){
+            if(options.text !== ''){
               for(let y = 0; y < renderItems[i][1].length; y++){
                 if(Object.values(renderItems[i][1][y]).toString().includes(options.text)){
                   newItems.push(renderItems[i]);
@@ -122,7 +121,6 @@ class App extends Component {
 
   handleSearch = ev => {
     let renderItems = this.state.renderItems;
-    let filteredItems = this.state.filteredItems;
     let options = this.state.filterOptions;
     let newItems = [];
 
@@ -139,10 +137,10 @@ class App extends Component {
       });
     } else {
       for(let i = 0; i < renderItems.length; i++){
-        if(options.filter.length != 0){
+        if(options.filter.length !== 0){
           for(let x = 0; x < options.filter.length; x++){
             if(renderItems[i][0] === options.filter[x]){
-              if(options.text != ''){
+              if(options.text !== ''){
                 for(let y = 0; y < renderItems[i][1].length; y++){
                   if(Object.values(renderItems[i][1][y]).toString().includes(options.text)){
                     newItems.push(renderItems[i]);

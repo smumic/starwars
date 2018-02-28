@@ -17,7 +17,7 @@ class List extends Component {
         {
           this.props.renderItems.map(function(item, i){
             return item[1].map(function(dataReturn, i){
-              return (<ListItem values={dataReturn} />);
+              return (<ListItem values={dataReturn} key={Math.random()}/>);
             });
           })
         }
