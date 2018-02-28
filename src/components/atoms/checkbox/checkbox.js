@@ -9,7 +9,6 @@ class Checkbox extends Component {
         name={this.props.name}
         id={this.props.id}
         value={this.props.value}
-        checked={this.props.checked}
         onChange={this.props.onChange}
       />
     );

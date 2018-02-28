@@ -17,7 +17,6 @@ class List extends Component {
     for(let i = 0; i < this.props.renderItems.length; i++){
       for(let y = 0; y < this.props.renderItems[i].length; y++){
         let data = this.props.renderItems[i][y];
-        console.log(data);
         let values = Object.values(data);
         listItems.push(values);
       }

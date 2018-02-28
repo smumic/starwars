@@ -1,0 +1,22 @@
+.m-filter {
+  position: fixed;
+  top: 100px;
+  height: 80px;
+  width: 100%;
+  background-color: #f3f3f3; }
+
+.m-filter__listItem {
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.2s ease; }
+
+.m-filter__listItem:hover {
+  background-color: #fd8926;
+  color: white; }
+
+.m-filter__listItem label {
+  display: inline-block;
+  padding: 33px 41px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer; }

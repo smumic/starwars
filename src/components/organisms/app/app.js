@@ -3,12 +3,14 @@ import Login from 'components/molecules/login';
 import Search from 'components/molecules/search';
 import List from 'components/molecules/list';
 import Loading from 'components/molecules/loading';
+import Filter from 'components/molecules/filter';
 import { fetchFilms } from 'api/starwars';
 import { fetchPeople } from 'api/starwars';
 import { fetchPlanets } from 'api/starwars';
 import { fetchSpecies } from 'api/starwars';
 import { fetchVehicles } from 'api/starwars';
 import { fetchStarships } from 'api/starwars';
+import filter from 'helper/filter';
 import './css/app.css';
 
 class App extends Component {
@@ -22,6 +24,8 @@ class App extends Component {
       isLoggedIn: false,
       isLoading: true,
       renderItems: null,
+      filteredItems: null,
+      filterOptions:[],
       dataSequence: {
         films: 0,
         people: 1,
@@ -70,6 +74,7 @@ class App extends Component {
     }).then(() => {
         return this.setState({
           renderItems: renderData,
+          filteredItems: renderData,
           isLoading: false
         });
     })
@@ -87,17 +92,22 @@ class App extends Component {
     }
   };
 
+  handleFilterSwitched = ev => {
+    let options = this.state.filterOptions;
+    console.log('changed');
+  };
+
   handleTypedUsername = username => {
     this.setState({
       typedUsername: username
     });
-  }
+  };
 
   handleTypedPassword = password => {
     this.setState({
       typedPassword: password
     });
-  }
+  };
 
   render() {
     let html = null;
@@ -114,7 +124,8 @@ class App extends Component {
         html = (
           <div className="o-app__container--child">
             <Search />
-            <List renderItems={this.state.renderItems} dataComponents={this.state.dataComponents} dataSequence={this.dataSequence}/>
+            <Filter onFilterSwitched={this.handleFilterSwitched}/>
+            <List renderItems={this.state.filteredItems} dataComponents={this.state.dataComponents} dataSequence={this.dataSequence}/>
           </div>
         );
       }
