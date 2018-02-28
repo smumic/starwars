@@ -13,13 +13,11 @@ class List extends Component {
   render(){
     return (
       <ul className="m-list">
-              {this.props.renderItems.length !== 0
+        {this.props.renderItems.length !== 0
         ? this.props.renderItems.map(categorie => (
-          categorie.map(item => (
-              <ListItem />
-            ))
-          ))
-        : <li className="a-listItem">Keine Restaurants gefunden</li>}
+          <ListItem handleCategorie={categorie} key={Math.random()}/>
+        ))
+        : <li className="a-listItem">Keine Items gefunden</li>}
       </ul>
     )
   }

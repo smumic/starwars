@@ -9,9 +9,19 @@ class ListItem extends Component {
     };
   }
 
+  handleCategories = ev => {
+    for(var i = 0; i < this.props.handleCategorie.length; i++){
+      console.log(this.props.handleCategorie, this.props.handleCategorie[i]);
+    }
+  }
   render(){
+    let html = null;
+
+    this.handleCategories();
+
+
     return (
-      <li></li>
+      <div></div>
     )
   }
 }
