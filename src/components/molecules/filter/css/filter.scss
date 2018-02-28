@@ -22,6 +22,11 @@
       cursor: pointer;
     }
   }
+  &__listItem--active {
+    background-color: #fd8926;
+    color: white;
+  }
   .a-checkbox {
+    display: none;
   }
 }

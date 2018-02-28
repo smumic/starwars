@@ -20,3 +20,10 @@
   font-size: 15px;
   font-weight: bold;
   cursor: pointer; }
+
+.m-filter__listItem--active {
+  background-color: #fd8926;
+  color: white; }
+
+.m-filter .a-checkbox {
+  display: none; }
