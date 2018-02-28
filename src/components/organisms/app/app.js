@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import Login from 'components/molecules/login';
 import Search from 'components/molecules/search';
-import { fetchApiData } from 'api/starwars';
+import { fetchFilms } from 'api/starwars';
+import { fetchPeople } from 'api/starwars';
+import { fetchPlanets } from 'api/starwars';
+import { fetchSpecies } from 'api/starwars';
+import { fetchVehicles } from 'api/starwars';
+import { fetchStarships } from 'api/starwars';
 import './css/app.css';
 
 class App extends Component {
@@ -14,7 +19,8 @@ class App extends Component {
       typedPassword: "",
       isLoggedIn: false,
       filteredData: null,
-      isLoading: true
+      isLoading: true,
+      renderItems: null
     };
   }
 
@@ -32,14 +38,25 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetchApiData()
-      .then(data => {
-        console.log(data);
+    let renderData = [];
+    Promise.all([
+      fetchFilms(),
+      fetchPeople(),
+      fetchPlanets(),
+      fetchSpecies(),
+      fetchVehicles(),
+      fetchStarships()
+    ]).then(responses => {
+      return responses.map(response => {
+        return renderData.push(response);
       })
-      .catch(err => {
-        console.log(err)
-      });
-  }
+    }).then(() => {
+        return this.setState({
+          renderItems: renderData,
+          isLoading: false
+        });
+    })
+  };
 
   handleLogin = ev => {
     ev.preventDefault();
@@ -48,7 +65,7 @@ class App extends Component {
         isLoggedIn: true
       });
       localStorage.setItem("loggedIn", true);
-    }else {
+    } else {
       console.log("bad");
     }
   };
@@ -69,9 +86,21 @@ class App extends Component {
     let html = null;
 
     if(this.state.isLoggedIn){
-      html = (
-        <Search />
-      );
+      if(this.state.isLoading){
+        html = (
+          <div className="o-app__container--child o-app__loading-container">
+            <Search />
+            <div>LOADING</div>
+          </div>
+        );
+      }else {
+        html = (
+          <div className="o-app__container--child">
+            <Search />
+            
+          </div>
+        );
+      }
     }else {
       html = (
         <div className="o-app__container--child">
