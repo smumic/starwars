@@ -5,26 +5,21 @@
   width: 100%;
   background-color: #f3f3f3;
   z-index: 1000; }
-
-.m-filter__listItem {
-  display: inline-block;
-  cursor: pointer;
-  transition: all 0.2s ease; }
-
-.m-filter__listItem:hover {
-  background-color: #fd8926;
-  color: white; }
-
-.m-filter__listItem label {
-  display: inline-block;
-  padding: 33px 41px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer; }
-
-.m-filter__listItem--active {
-  background-color: #fd8926;
-  color: white; }
-
-.m-filter .a-checkbox {
-  display: none; }
+  .m-filter__listItem {
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.2s ease; }
+    .m-filter__listItem:hover {
+      background-color: #fd8926;
+      color: white; }
+    .m-filter__listItem label {
+      display: inline-block;
+      padding: 33px 41px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer; }
+  .m-filter__listItem--active {
+    background-color: #fd8926;
+    color: white; }
+  .m-filter .a-checkbox {
+    display: none; }

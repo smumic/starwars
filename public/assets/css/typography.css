@@ -38,3 +38,6 @@ body {
 .icon-search:before {
   content: "\e986";
 }
+.icon-exit:before {
+  content: "\ea14";
+}

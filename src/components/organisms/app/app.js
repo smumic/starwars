@@ -4,6 +4,7 @@ import Search from 'components/molecules/search';
 import List from 'components/molecules/list';
 import Loading from 'components/molecules/loading';
 import Filter from 'components/molecules/filter';
+import Logout from 'components/molecules/logout';
 import { fetchFilms } from 'api/starwars';
 import { fetchPeople } from 'api/starwars';
 import { fetchPlanets } from 'api/starwars';
@@ -166,7 +167,9 @@ class App extends Component {
 
   };
 
-
+  handleLogout = ev => {
+    console.log('logout');
+  };
 
   handleTypedUsername = username => {
     this.setState({
@@ -194,6 +197,7 @@ class App extends Component {
       }else {
         html = (
           <div className="o-app__container--child">
+            <Logout handleLogout={this.handleLogout} />
             <Search onHandleSearch={this.handleSearch} />
             <Filter onFilterSwitched={this.handleFilterSwitched}/>
             <List renderItems={this.state.filteredItems} dataComponents={this.state.dataComponents} dataSequence={this.dataSequence}/>
