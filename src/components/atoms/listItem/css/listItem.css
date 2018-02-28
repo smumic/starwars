@@ -1,7 +1,7 @@
 .a-listItem__item {
   display: inline-block;
-  max-width: 200px;
-  max-height: 200px;
+  height: 200px;
+  width: 200px;
   overflow: hidden;
   padding: 20px;
   cursor: pointer;
@@ -10,3 +10,23 @@
 
 .a-listItem__item:hover {
   border-bottom-color: #fd8926; }
+
+.a-listItem__data-item:first-child {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 200px; }
+
+.selected {
+  position: absolute;
+  z-index: 200;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white; }
+
+.selected .a-listItem__data-item {
+  margin-bottom: 15px; }
+
+.selected .a-listItem__data-item:first-child {
+  margin-bottom: 25px; }

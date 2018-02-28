@@ -6,6 +6,7 @@
   height: 100px;
   padding: 0 50px;
   background-color: #13232f;
+  z-index: 1000;
 
   &__container--child {
     display: inline-block;

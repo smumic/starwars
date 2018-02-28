@@ -1,2 +1,4 @@
 .m-list {
-  margin-top: 200px; }
+  margin-top: 200px;
+  padding: 0 200px;
+  position: relative; }

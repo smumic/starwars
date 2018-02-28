@@ -3,7 +3,8 @@
   top: 100px;
   height: 80px;
   width: 100%;
-  background-color: #f3f3f3; }
+  background-color: #f3f3f3;
+  z-index: 1000; }
 
 .m-filter__listItem {
   display: inline-block;
